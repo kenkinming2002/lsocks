@@ -1,0 +1,12 @@
+[package]
+name = "lsocks"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.104"
+argh = "0.1.19"
+env_logger = "0.11.11"
+ipnet = "2.12.2"
+log = "0.4.34"
+tokio = { version = "1.54.1", features = ["macros", "rt", "rt-multi-thread", "net", "io-util"] }
