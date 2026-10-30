@@ -32,7 +32,7 @@ fn main() -> Result<()> {
     let mut stream = TcpStream::connect(args.target)?;
     let mut writer = BufWriter::new(&mut stream);
     writer.write_all(b"LSCK")?;
-    writer.write(&[args.name.len().try_into().context("")?])?;
+    writer.write(&[args.name.len().try_into().context("service name too long")?])?;
     writer.write(args.name.as_bytes())?;
     writer.flush()?;
     drop(writer);
