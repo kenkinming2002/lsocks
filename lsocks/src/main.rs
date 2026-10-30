@@ -195,6 +195,9 @@ impl LSocks {
         let mut reader = BufReader::new(reader);
         let mut writer = BufWriter::new(writer);
 
+        let magic = reader.read_u32().await?;
+        if &magic.to_ne_bytes() != b"LSCK" { bail!("invalid magic bytes: dropping connection"); }
+
         let length = reader.read_u8().await?;
 
         let mut name = vec![0; length as usize];
